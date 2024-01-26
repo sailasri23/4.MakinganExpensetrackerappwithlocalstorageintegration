@@ -17,6 +17,18 @@ function handleFormSubmit(event) {
     // Display the expense details on the screen
     showscreen(key, expenseData);
 }
+//Loading Stored Expenses on Page Load:
+window.addEventListener("DOMContentLoaded",()=>{
+    const localStorageobj = localStorage;
+    const localStoragekeys = Object.keys(localStorageobj)
+
+    for(var i=0;i<localStoragekeys.length;i++){
+        const key = localStoragekeys[i]
+        const detailsstring = localStorageobj[key]
+        const detailobj = JSON.parse(detailsstring)
+        showscreen(key,detailobj)
+    }
+})
 function showscreen(key, expenseData) {
     const parentele = document.getElementById("userList");
     const childele = document.createElement('li');
